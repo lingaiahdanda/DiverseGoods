@@ -9,6 +9,7 @@ This is a microservices project for E-commerce application developed using Sprin
   Technologies:- Spring Boot, MySQL
 3. Inventory-service :- Check if the product is available,
    Technologies:- Spring Boot, MySQL
+4. Discovery Service :- Netflix Eureka of spring Cloud
   
 # Interprocess Communication between Services:-
 
