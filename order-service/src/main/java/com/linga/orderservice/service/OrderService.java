@@ -25,7 +25,7 @@ public class OrderService {
     @Autowired
     private  OrderRepository orderRepository;
     @Autowired
-    private WebClient webClient;
+    private WebClient.Builder webClientBuilder;
 
     Logger logger = LoggerFactory.getLogger("skuCodesLogger");
     public  void placeOrder(OrderRequest orderRequest){
@@ -42,7 +42,7 @@ public class OrderService {
                 .map(OrderLineItems::getSkuCode)
                 .toList();
         //call to the inventory service(Synchronous) to check where the product is in stock
-        InventoryResponse[] inventoryResponses = webClient.get().uri("http://localhost:8079/api/inventory", uriBuilder
+        InventoryResponse[] inventoryResponses = webClientBuilder.build().get().uri("http://inventory-service/api/inventory", uriBuilder
                         -> uriBuilder.queryParam("skuCode",skuCodes).build())
                 .retrieve()
                 .bodyToMono(InventoryResponse[].class)
