@@ -36,7 +36,6 @@ public class OrderService {
                 .stream()
                 .map(this::mapToDto)
                 .toList();
-        logger.info(orderLineItems.toString());
         order.setOrderLineItemsList(orderLineItems);
 
         List<String> skuCodes = order.getOrderLineItemsList().stream()
