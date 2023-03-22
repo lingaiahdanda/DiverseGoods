@@ -12,7 +12,7 @@ This is a microservices project for E-commerce application developed using Sprin
 4. Discovery Service :- Used for service discovery
 Technologies :- Netflix Eureka of spring Cloud
 5. Api Gateway Service :- Used as api gateway for routing, load balancing
-   Technologies:- Spring Cloud Gateway
+   Technologies:- Spring Cloud Gateway.
   
 # Interprocess Communication between Services:-
 
