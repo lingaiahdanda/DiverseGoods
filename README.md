@@ -15,6 +15,8 @@ Technologies :- Netflix Eureka of spring Cloud
    , Technologies:- Spring Cloud Gateway.
 6. Circuit Breaker:- Used for resilience 
    Technologies:- Spring cloud Resilience4j
+7. Event Driven Architecture :- used Kafka for sending a notification(Async),
+   Technologies:- Apache Kafka Spring cloud
   
 # Interprocess Communication between Services:-
 
@@ -36,3 +38,7 @@ Through this  i.e http://localhost:8080/api/service-name all the services are ac
 
 Used to maintain resilience to the services with states and helps in maintaining fallback logics, Timeouts , retry
 
+# Event Driven Architecture using Kafka
+
+Kafka is used to create microservices in a event driven pattern . Here when an order is placed the notification sent event is triggered and the consumer who is consuming the even listens and proceeds with the message which it receives
+Here OrderService is the producer and the Notification Service is the consumer

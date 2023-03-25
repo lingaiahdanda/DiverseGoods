@@ -3,6 +3,7 @@ package com.linga.orderservice.service;
 import com.linga.orderservice.dto.InventoryResponse;
 import com.linga.orderservice.dto.OrderLineItemsDto;
 import com.linga.orderservice.dto.OrderRequest;
+import com.linga.orderservice.event.OrderPlacedEvent;
 import com.linga.orderservice.model.Order;
 import com.linga.orderservice.model.OrderLineItems;
 import com.linga.orderservice.respository.OrderRepository;
@@ -10,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -20,12 +22,14 @@ import java.util.UUID;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class OrderService {
 
     @Autowired
     private  OrderRepository orderRepository;
     @Autowired
     private WebClient.Builder webClientBuilder;
+    private final KafkaTemplate<String, OrderPlacedEvent> kafkaTemplate;
 
     Logger logger = LoggerFactory.getLogger("skuCodesLogger");
     public  String placeOrder(OrderRequest orderRequest){
@@ -52,6 +56,7 @@ public class OrderService {
         boolean isAllInStock = Arrays.stream(inventoryResponses).allMatch(InventoryResponse::isInStock);
         if(isAllInStock){
             orderRepository.save(order);
+            kafkaTemplate.send("notificationTopic", new OrderPlacedEvent(order.getOrderNumber()));
             return "Order Places Successfully";
         }else{
             throw new IllegalArgumentException("Product is not in stock , We will notify when it is available");
