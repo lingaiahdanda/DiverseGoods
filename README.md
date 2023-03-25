@@ -9,10 +9,12 @@ This is a microservices project for E-commerce application developed using Sprin
   Technologies:- Spring Boot, MySQL
 3. Inventory-service :- Check if the product is available,
    Technologies:- Spring Boot, MySQL
-4. Discovery Service :- Used for service discovery
+4. Discovery Service :- Used for service discovery,
 Technologies :- Netflix Eureka of spring Cloud
 5. Api Gateway Service :- Used as api gateway for routing, load balancing
-   Technologies:- Spring Cloud Gateway.
+   , Technologies:- Spring Cloud Gateway.
+6. Circuit Breaker:- Used for resilience 
+   Technologies:- Spring cloud Resilience4j
   
 # Interprocess Communication between Services:-
 
@@ -30,5 +32,7 @@ Gateways are used to route, provide authorization, SSL etc. Here we define route
 Through this  i.e http://localhost:8080/api/service-name all the services are accessed and also load balanced.
 
 
+# Circuit Breaker using Spring Cloud Resilience4j
 
+Used to maintain resilience to the services with states and helps in maintaining fallback logics, Timeouts , retry
 
