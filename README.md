@@ -1,5 +1,5 @@
-# E-microservices-parent
-This is a microservices project for E-commerce application developed using Spring Boot and Spring Cloud
+# DiverseGoods
+This is a microservices project for DiverseGoods application which manages the products, inventory and takes care of order management , developed using Spring Boot and Spring Cloud
 
 # Services Used:-
 
